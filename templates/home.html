@@ -1,0 +1,38 @@
+
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1><p align="center"> The TODO app</p></h1>
+
+<b><li style="color:blank; font-size: 20px; font-face=times new roman">Add a new task</li></b>
+<form method="POST"> {% csrf_token %}
+	{{context_form.as_p}}
+	<input type="submit" value="Add"> <a href='/'><button type="button" class="btn btn-primary">Cancel</button></a><br/><br/><br/>
+</form>	
+
+
+
+
+
+
+<li><b style="color:black; font-size: 20px; font-face=times new roman"> Following is the list of tasks to be completed </b></li>
+{% for x in context_obj %}
+<ul>
+	<li>
+		{{x.add_todo}} --- <a href='{{x.get_absolute_url}}'><button type="button" class="btn btn-outline-primary"> Done </button></a><br/>
+
+
+		<!-- {{x.add_todo}}---<a href="{{x.get_absolute_url}}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Done</a>
+
+		{{x.add_todo}}---<button type="button" class="btn btn-outline-primary">Delete</button> -->
+
+
+
+	</li>
+</ul>
+
+{% endfor %}
+
+{% endblock %}
